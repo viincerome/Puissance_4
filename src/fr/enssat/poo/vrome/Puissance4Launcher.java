@@ -1,7 +1,10 @@
 package fr.enssat.poo.vrome;
 
+import javax.swing.JFrame;
+
 import fr.enssat.poo.vrome.controlers.ApplicationController;
-import fr.enssat.poo.vrome.models.Modele;
+import fr.enssat.poo.vrome.models.*;
+import fr.enssat.poo.vrome.views.SettingView;
 
 public class Puissance4Launcher {
 
@@ -13,9 +16,9 @@ public class Puissance4Launcher {
 	public static void main(String args[]){
 		
 		//Déclaration d'une matrice
-		Modele matricetest;
+		Plateau matricetest;
 		//Création matrice test
-		matricetest = Modele.creerMatrice(6,7,0);
+		matricetest = Plateau.creerMatrice(6,7,0);
 		//Affichage de la matrice
 		matricetest.afficheMatrice();
 		
@@ -23,5 +26,7 @@ public class Puissance4Launcher {
 		matricetest.setel(5,2,1);
 		
 		matricetest.afficheMatrice();
+		
+		JFrame fenetre = new SettingView();
 	}
 }
