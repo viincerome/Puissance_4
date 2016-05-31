@@ -12,5 +12,5 @@ public final class ViewsUtilities {
 		window.pack();
 		window.setVisible(true);
 	}
-
+	
 }
