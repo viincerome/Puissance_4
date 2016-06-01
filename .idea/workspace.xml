@@ -2,30 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f76ed05d-f146-4567-ba31-cd380211780c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Puissance_4.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/models/Player.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/models/entities/EmptyPlace.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/models/entities/GameEntity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/models/entities/Pion.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/models/entities/PionColor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/models/exceptions/CoordsException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/models/matrix/GameEntityMatrix.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/models/matrix/GameEntityMatrix2DArrayImpl.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/models/Joueur.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/models/Modele.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/models/Pions.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fr/enssat/poo/utilities/Logger.java" afterPath="$PROJECT_DIR$/src/fr/enssat/poo/utilities/Logger.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fr/enssat/poo/utilities/SystemOutLogger.java" afterPath="$PROJECT_DIR$/src/fr/enssat/poo/utilities/SystemOutLogger.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/Puissance4Launcher.java" afterPath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/Puissance4Launcher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/controlers/ApplicationController.java" afterPath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/controlers/ApplicationController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/models/Plateau.java" afterPath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/models/Plateau.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/views/MainView.java" afterPath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/views/MainView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/views/SettingView.java" afterPath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/views/SettingView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/views/ViewsUtilities.java" afterPath="$PROJECT_DIR$/src/fr/enssat/poo/vrome/views/ViewsUtilities.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Puissance_4.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -124,6 +102,7 @@
         <option value="$PROJECT_DIR$/src/fr/enssat/poo/vrome/models/PlateauMaelig.java" />
         <option value="$PROJECT_DIR$/src/fr/enssat/poo/vrome/models/matrix/GameEntityMatrix2DArrayImpl.java" />
         <option value="$PROJECT_DIR$/src/fr/enssat/poo/vrome/models/entities/EmptyPlace.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -597,12 +576,12 @@
       <created>1464787967743</created>
       <option name="number" value="Default" />
       <updated>1464787967743</updated>
-      <workItem from="1464787975005" duration="6170000" />
+      <workItem from="1464787975005" duration="6436000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6170000" />
+    <option name="totallyTimeSpent" value="6436000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1121" extended-state="6" />
@@ -762,6 +741,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.625">
           <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15625">
+          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
           <folding />
         </state>
       </provider>
