@@ -13,7 +13,7 @@ public class ApplicationController {
     private PlateauMaelig modele;
 
     public ApplicationController() {
-        this.modele = new PlateauMaelig(7, 8);
+        this.modele = new PlateauMaelig(7, 7);
     }
 
     public void launch() {

@@ -1,5 +1,6 @@
 package fr.enssat.poo.vrome.models;
 
+import fr.enssat.poo.vrome.models.entities.GameEntity;
 import fr.enssat.poo.vrome.models.entities.GameState;
 import fr.enssat.poo.vrome.utilities.Logger;
 import fr.enssat.poo.vrome.utilities.SystemOutLogger;
@@ -44,28 +45,22 @@ public class PlateauMaelig {
     }
 
     private void updatePionPosition(Pion pion, int x, int y) {
-        // TODO: il faut faire cette méthode, le code ci dessous marche pas trop
-//        // Un pion doit "chuter" tant qu'il y a du vide en dessous lui
-//        int x_tmp = x + 1;
-//        boolean finish = false;
-//
-//        while (!finish) { // TODO: meilleure solution que 'instanceof' ?
-//            GameEntity entityBelow = this.grille.getContentAt(x_tmp, y); // TODO coords
-//            if (isValidCoords(x_tmp, y) && entityBelow instanceof EmptyPlace) {
-//                LOGGER.debug("Il y a du vide en dessous, le pion chute...");
-//                this.grille.setContentAt(x_tmp, y, new EmptyPlace());
-//                x_tmp = x_tmp + 1;
-//                this.grille.setContentAt(x_tmp, y, pion);
-//            } else {
-//                LOGGER.debug("Le pion ne peux plus tomber.");
-//                finish = true;
-//            }
-//        }
+        while (isValidCoords(x,y) && getEntityBelow(x, y) instanceof EmptyPlace) {
+                this.grille.setContentAt(x, y, new EmptyPlace());
+                x = x + 1;
+                this.grille.setContentAt(x, y, pion);
+        }
     }
 
+    private GameEntity getEntityBelow(int x, int y) {
+        return this.grille.getContentAt(x + 1, y);
+    }
+
+
     private boolean isValidCoords(int x, int y) {
-        LOGGER.debug("x = " + x);
-        return !(x >= this.grille.getRowsCount() || x <= 0 || y <= 0 || y >= this.grille.getColumnsCount());
+        boolean validX = ! (x < 0 || x >= this.grille.getRowsCount()-1);
+        boolean validY = !(y < 0 || y >= this.grille.getColumnsCount()-1);
+        return validX && validY;
     }
 
 }
