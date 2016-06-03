@@ -1,9 +1,9 @@
 package fr.enssat.poo.vrome.models;
 
-import fr.enssat.poo.utilities.Logger;
-import fr.enssat.poo.utilities.SystemOutLogger;
+import fr.enssat.poo.vrome.models.entities.GameState;
+import fr.enssat.poo.vrome.utilities.Logger;
+import fr.enssat.poo.vrome.utilities.SystemOutLogger;
 import fr.enssat.poo.vrome.models.entities.EmptyPlace;
-import fr.enssat.poo.vrome.models.entities.GameEntity;
 import fr.enssat.poo.vrome.models.entities.Pion;
 import fr.enssat.poo.vrome.models.matrix.GameEntityMatrix;
 import fr.enssat.poo.vrome.models.matrix.GameEntityMatrix2DArrayImpl;
@@ -13,10 +13,12 @@ public class PlateauMaelig {
     private Logger LOGGER = new SystemOutLogger(PlateauMaelig.class);
 
     private GameEntityMatrix grille;
+    private GameState state;
 
     public PlateauMaelig(int columns, int rows) {
         this.grille = new GameEntityMatrix2DArrayImpl(columns, rows);
         init();
+        this.state = GameState.PENDING;
     }
 
     private void init() {

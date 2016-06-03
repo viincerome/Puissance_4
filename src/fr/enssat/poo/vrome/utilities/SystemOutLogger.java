@@ -1,4 +1,4 @@
-package fr.enssat.poo.utilities;
+package fr.enssat.poo.vrome.utilities;
 
 /**
  * DefaultLogger that use the standart output (System.out) to display

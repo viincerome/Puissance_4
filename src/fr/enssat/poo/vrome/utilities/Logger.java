@@ -1,4 +1,4 @@
-package fr.enssat.poo.utilities;
+package fr.enssat.poo.vrome.utilities;
 
 public abstract class Logger {
 

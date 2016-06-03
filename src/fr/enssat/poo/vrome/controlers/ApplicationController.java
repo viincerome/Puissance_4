@@ -1,7 +1,7 @@
 package fr.enssat.poo.vrome.controlers;
 
-import fr.enssat.poo.utilities.Logger;
-import fr.enssat.poo.utilities.SystemOutLogger;
+import fr.enssat.poo.vrome.utilities.Logger;
+import fr.enssat.poo.vrome.utilities.SystemOutLogger;
 import fr.enssat.poo.vrome.models.PlateauMaelig;
 import fr.enssat.poo.vrome.models.entities.Pion;
 import fr.enssat.poo.vrome.models.entities.PionColor;
