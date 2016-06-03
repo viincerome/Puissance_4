@@ -28,7 +28,7 @@ public class PlateauMaelig {
                 this.grille.setContentAt(i, j, new EmptyPlace());
             }
         }
-        LOGGER.debug("La matrice de taille " + rowsCount + "x" + columnsCount + " a bien été initialisée avec de la terre et des cases vides");
+        LOGGER.debug("La grille de taille " + rowsCount + "x" + columnsCount + " a bien été initialisée avec des cases vides");
     }
 
     public void afficherPlateau() {
