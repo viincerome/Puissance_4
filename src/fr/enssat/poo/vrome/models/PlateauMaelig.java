@@ -6,6 +6,7 @@ import fr.enssat.poo.vrome.utilities.Logger;
 import fr.enssat.poo.vrome.utilities.SystemOutLogger;
 import fr.enssat.poo.vrome.models.entities.EmptyPlace;
 import fr.enssat.poo.vrome.models.entities.Pion;
+import fr.enssat.poo.vrome.models.exceptions.CoordsException;
 import fr.enssat.poo.vrome.models.matrix.GameEntityMatrix;
 import fr.enssat.poo.vrome.models.matrix.GameEntityMatrix2DArrayImpl;
 
@@ -14,12 +15,14 @@ public class PlateauMaelig {
     private Logger LOGGER = new SystemOutLogger(PlateauMaelig.class);
 
     private GameEntityMatrix grille;
-    private GameState state;
+
+    // ==============
+    // INITIALISATION
+    // ==============
 
     public PlateauMaelig(int columns, int rows) {
         this.grille = new GameEntityMatrix2DArrayImpl(columns, rows);
         init();
-        this.state = GameState.PENDING;
     }
 
     private void init() {
@@ -34,12 +37,20 @@ public class PlateauMaelig {
         LOGGER.debug("La grille de taille " + rowsCount + "x" + columnsCount + " a bien été initialisée avec des cases vides");
     }
 
-    public void afficherPlateau() {
-        this.grille.display();
-    }
+    // ================
+    // PIONS MANAGEMENT
+    // ================
 
-    public void addPion(Pion pion, int x, int y) {
-        // TODO: Vérifier les coords (on ne peut ajouter que sur la première ligne d'une colonne non pleine
+    // TODO: not tested yet
+    public void addPion(Pion pion, int x, int y) {    	
+    	if (x != 0 || ! isValidCoords(x, y)) {
+    		throw new CoordsException("On ne peux ajouter un pion que sur la première ligne !");
+    	}
+    	
+    	if (!(getEntityBelow(x, y) instanceof EmptyPlace)) {
+    		throw new RuntimeException("On ne peux placer un pion que sur une colonne ayant au moins une place"); // TODO: Create a more explicit exception
+    	}
+
         this.grille.setContentAt(x, y, pion);
         updatePionPosition(pion, x, y);
     }
@@ -47,15 +58,82 @@ public class PlateauMaelig {
     private void updatePionPosition(Pion pion, int x, int y) {
         while (isValidCoords(x,y) && getEntityBelow(x, y) instanceof EmptyPlace) {
                 this.grille.setContentAt(x, y, new EmptyPlace());
-                x = x + 1;
+                x = x + 1; // FIXME: parameter should not be assigned
                 this.grille.setContentAt(x, y, pion);
         }
     }
 
-    private GameEntity getEntityBelow(int x, int y) {
+    //======================
+    // NEIGHTBORING ENTITIES
+    //======================
+
+    public GameEntity getEntityBelow(final int x, final int y)
+    {
         return this.grille.getContentAt(x + 1, y);
     }
 
+    public GameEntity getEntityAbove(final int x, final int y)
+    {
+        return this.grille.getContentAt(x - 1, y);
+    }
+
+    public GameEntity getEntityOnRight(final int x, final int y)
+    {
+        return this.grille.getContentAt(x, y + 1);
+    }
+
+    public GameEntity getEntityOnLeft(final int x, final int y)
+    {
+        return this.grille.getContentAt(x, y - 1);
+    }
+
+    public GameEntity getEntityBelowRight(final int x, final int y)
+    {
+        return this.grille.getContentAt(x + 1, y + 1);
+    }
+
+    public GameEntity getEntityBelowLeft(final int x, final int y)
+    {
+        return this.grille.getContentAt(x + 1, y - 1);
+    }
+
+    public GameEntity getEntityAboveRight(final int x, final int y)
+    {
+        return this.grille.getContentAt(x - 1, y + 1);
+    }
+
+    public GameEntity getEntityAboveLeft(final int x, final int y)
+    {
+        return this.grille.getContentAt(x - 1, y - 1);
+    }
+
+    //
+    //
+    //
+
+    public boolean haveHorizontalSerie(int count) {
+        return false; //TODO
+    }
+
+    public boolean haveVerticalSerie(int count) {
+        return false; //TODO
+    }
+
+    public boolean haveDiagonalRightSerie(int count) {
+        return false; //TODO
+    }
+
+    public boolean haveDiagonalLeftSerie(int count) {
+        return false; //TODO
+    }
+
+    public boolean haveEmptyPlace() {
+        return false; //TODO
+    }
+
+    // ======================
+    // COORDINATES MANAGEMENT
+    // ======================
 
     private boolean isValidCoords(int x, int y) {
         boolean validX = ! (x < 0 || x >= this.grille.getRowsCount()-1);
@@ -63,4 +141,11 @@ public class PlateauMaelig {
         return validX && validY;
     }
 
+    // =============================
+    // DEVELOPMENT / DEBUG UTILITIES
+    // =============================
+
+    public void afficherPlateau() {
+        this.grille.display();
+    }
 }
