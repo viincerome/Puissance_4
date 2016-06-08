@@ -118,22 +118,12 @@ public class PlateauMaelig {
     -> Si pion : regarder la couleur
     -> Faire ça pour 4 distances
      */
-    public boolean haveHorizontalSerie(int count ) {	//count = 4
+    public boolean haveHorizontalSerie(int count) {
+    	// Regarder à droite et à gauche à partir du dernier pion posé
     	
-    	for (int i=0; i<count; i++){
-    		//if()
-    	}
-    	/*if(){
-    		if (grille.getContentAt(count-1,count) instanceof Pion) {
-				Pion pionRight = (Pion) grille.getContentAt(count-1,count);
-				
-			}
-    		return true;
-    	}else{
-    	    return false;
-    	}*/
+
     	return false;
-    }//TODO
+    }
 
     public boolean haveVerticalSerie(int count) {
 	    	/*if(){
