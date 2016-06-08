@@ -2,6 +2,10 @@ package fr.enssat.poo.vrome.models.entities;
 
 public class Pion implements GameEntity {
 
+    // Memorive the coordinates
+    private int x;
+    private int y;
+    
     private PionColor color;
 
     public Pion(PionColor color) {
