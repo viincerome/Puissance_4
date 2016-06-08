@@ -11,7 +11,7 @@ public class Game {
     private Logger LOGGER = new SystemOutLogger(Game.class);
 
     private static final int PIONS_ALIGNMENT_TO_WIN = 4;
-    private PlateauMaelig plateau;
+    private final PlateauMaelig plateau;
     private GameState gameState;
 
     public Game(int rows, int columns) {
@@ -20,13 +20,23 @@ public class Game {
     }
 
     public void updateGameStatus() {
-        if (plateau.haveHorizontalSerie(PIONS_ALIGNMENT_TO_WIN) || plateau.haveVerticalSerie(PIONS_ALIGNMENT_TO_WIN) || plateau.haveDiagonalRightSerie(PIONS_ALIGNMENT_TO_WIN) || plateau.haveDiagonalLeftSerie(PIONS_ALIGNMENT_TO_WIN)) {
+        if (plateau.haveHorizontalRightSerie(PIONS_ALIGNMENT_TO_WIN)) {	//rajouter les conditions avec les "||"
             this.gameState = GameState.FINISH_WIN; // TODO: add a mechanism to get the winner
         }
 
-        if (!plateau.haveEmptyPlace()) {
-            this.gameState = GameState.FINISH_EQUALITY;
-        }
+       // if (!plateau.haveEmptyPlace()) {
+          //  this.gameState = GameState.FINISH_EQUALITY;
+      //  }
     }
+
+	public PlateauMaelig getPlateau() {
+		return plateau;
+	}
+
+	public GameState getGameStatus() {
+		return this.gameState;
+	}
+    
+    
 
 }
