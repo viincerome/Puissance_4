@@ -79,7 +79,7 @@ public class SystemOutLogger extends Logger {
     @Override
     public void debug(final CharSequence content) {
         if (isDebugEnabled()) {
-            System.out.println("[DEBUG - " + getClazz().getName() + "Â ] " + content); // NOSONAR: System.out and System.err should not be used as loggers
+            System.out.println("[DEBUG - " + getClazz().getName() + " ] " + content); // NOSONAR: System.out and System.err should not be used as loggers
         }
     }
 }

@@ -13,16 +13,20 @@ public class ApplicationController {
     private PlateauMaelig modele;
 
     public ApplicationController() {
-        this.modele = new PlateauMaelig(7, 7);
+        this.modele = new PlateauMaelig(6, 7);
     }
 
     public void launch() {
 
-        // Pour le moment, one gÃ¨re que le cas d'une nouvelle partie entre 2 joueurs
-//        this.modele.afficherPlateau();
+        // Pour le moment, on ne gère que le cas d'une nouvelle partie entre 2 joueurs
+    	//this.modele.afficherPlateau();
 
-        Pion premierPionBleu = new Pion(PionColor.BLUE);
-        this.modele.addPion(premierPionBleu, 0, 1);
+        Pion premierPionJaune = new Pion(PionColor.YELLOW);
+        this.modele.addPion(premierPionJaune, 0, 1);
+        //this.modele.afficherPlateau();
+        
+        Pion premierPionRouge = new Pion(PionColor.RED);
+        this.modele.addPion(premierPionRouge, 0, 3);
         this.modele.afficherPlateau();
 
         LOGGER.debug("Starting the app");

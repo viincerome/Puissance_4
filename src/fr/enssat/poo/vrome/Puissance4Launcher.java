@@ -10,9 +10,9 @@ public class Puissance4Launcher {
 
 //	public static void main(String args[]){
 //		
-//		//D�claration d'une matrice
+//		//Declaration d'une matrice
 //		Plateau matricetest;
-//		//Cr�ation matrice test
+//		//Creation matrice test
 //		matricetest = Plateau.creerMatrice(6,7,0);
 //		//Affichage de la matrice
 //		matricetest.afficheMatrice();
