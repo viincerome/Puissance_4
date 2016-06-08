@@ -2,12 +2,14 @@ package fr.enssat.poo.vrome.views;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import fr.enssat.poo.vrome.controlers.ApplicationController;
 
 import javax.swing.*;
 
-public class PlateauView extends JFrame {
+public class InfoView extends JFrame {
 
     private static final long serialVersionUID = -2658676059456370329L;
 
@@ -15,13 +17,14 @@ public class PlateauView extends JFrame {
     
     private JLabel label_plateau = new JLabel("Plateau");
     private JLabel label_info = new JLabel("Info");
+    
+    private JButton quitter;
 
-    public PlateauView(ApplicationController controler) {
+    public InfoView(ApplicationController controler) {
     	super("Puissance 4 - Vincent ROME");
         this.controler = controler;
         ViewsUtilities.setGeneralParameters(this);
-        this.setSize(750, 500);
-        this.setLocationRelativeTo(null);
+        this.setBounds(150, 150, 150, 100);
         
         JPanel plateau = new JPanel();
         plateau.setLayout(new FlowLayout());
@@ -31,20 +34,26 @@ public class PlateauView extends JFrame {
         info.setLayout(new FlowLayout());
         info.add(label_info);
         
-        setLayout(new GridLayout(6,7));
-		setSize(400, 350);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		for (int i = 0; i < 6; i++) {
-			for (int j = 0; j < 7; j++) {
-				getContentPane().add(new Case());
-				
-			}
-		}
+        this.quitter = new JButton("Quitter");
+        
+        setLayout(new GridLayout(2,2));
+        add(info);
+        add(plateau);
+        add(quitter);
+        
+        this.quitter.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        
         
     }
 
     public ApplicationController getControler() {
         return controler;
     }
+    
+   
 
 }

@@ -3,6 +3,7 @@ package fr.enssat.poo.vrome.views;
 import fr.enssat.poo.vrome.controlers.ApplicationController;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -65,6 +66,15 @@ public class SettingView extends JFrame {
 
         liste_label_ligne.setSelectedIndex(5);
         liste_label_colonne.setSelectedIndex(6);
+        
+        this.start.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame fenetrePlateau = new PlateauView(null);
+				JFrame fenetreInfo = new InfoView(null);
+				setVisible(false);				
+			}
+		});;
 
         this.quitter.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
