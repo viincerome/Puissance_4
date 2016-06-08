@@ -15,6 +15,7 @@ public class PlateauMaelig {
     private Logger LOGGER = new SystemOutLogger(PlateauMaelig.class);
 
     private GameEntityMatrix grille;
+    private Pion lastPlayedPion; // Dernier pion placÃ© sur le plateau
 
     // ==============
     // INITIALISATION
@@ -44,7 +45,7 @@ public class PlateauMaelig {
     // TODO: not tested yet
     public void addPion(Pion pion, int x, int y) {    	
     	if (x != 0 || ! isValidCoords(x, y)) {
-    		throw new CoordsException("On ne peux ajouter un pion que sur la premiÃ¨re ligne !");
+    		throw new CoordsException("On ne peux ajouter un pion que sur la premiÃƒÂ¨re ligne !");
     	}
     	
     	if (!(getEntityBelow(x, y) instanceof EmptyPlace)) {
@@ -111,11 +112,11 @@ public class PlateauMaelig {
     //
     
     /*
-    -> Récupérer la GameEntity qui est à côté dans la bonne direction (getContentAt en ajustant les coords).
+    -> RÃ©cupÃ©rer la GameEntity qui est Ã  cÃ´tÃ© dans la bonne direction (getContentAt en ajustant les coords).
     -> C'est un pion ou pas ? (instanceof Pion true ? false ?)
     -> Si pas pion : return false
     -> Si pion : regarder la couleur
-    -> Faire ça pour 4 distances
+    -> Faire Ã§a pour 4 distances
      */
     public boolean haveHorizontalSerie(int count) {
     	
