@@ -34,7 +34,7 @@ public class PlateauMaelig {
                 this.grille.setContentAt(i, j, new EmptyPlace());
             }
         }
-        LOGGER.debug("La grille de taille " + rowsCount + "x" + columnsCount + " a bien Ã©tÃ© initialisÃ©e avec des cases vides");
+        LOGGER.debug("La grille de taille " + rowsCount + "x" + columnsCount + " a bien ete initialisee avec des cases vides");
     }
 
     // ================
@@ -109,27 +109,70 @@ public class PlateauMaelig {
 
     //
     //
-    //
-
+    
+    /*
+    -> Récupérer la GameEntity qui est à côté dans la bonne direction (getContentAt en ajustant les coords).
+    -> C'est un pion ou pas ? (instanceof Pion true ? false ?)
+    -> Si pas pion : return false
+    -> Si pion : regarder la couleur
+    -> Faire ça pour 4 distances
+     */
     public boolean haveHorizontalSerie(int count) {
-        return false; //TODO
-    }
+    	
+    	/*if(){
+    		if (grille.getContentAt(count-1,count) instanceof Pion) {
+				Pion pionRight = (Pion) grille.getContentAt(count-1,count);
+				
+			}
+    		return true;
+    	}else{
+    	    return false;
+    	}*/
+    	return false;
+    }//TODO
 
     public boolean haveVerticalSerie(int count) {
-        return false; //TODO
-    }
+	    	/*if(){
+				if (grille.getContentAt(count-1,count) instanceof Pion) {
+					Pion pionRight = (Pion) grille.getContentAt(count-1,count);
+					
+				}
+				return true;
+			}else{
+			    return false;
+			}*/
+    	return false;
+    }//TODO
 
     public boolean haveDiagonalRightSerie(int count) {
-        return false; //TODO
-    }
+    	/*if(){
+			if (grille.getContentAt(count-1,count) instanceof Pion) {
+				Pion pionRight = (Pion) grille.getContentAt(count-1,count);
+				
+			}
+			return true;
+		}else{
+		    return false;
+		}*/
+    	return false;
+    }//TODO
 
     public boolean haveDiagonalLeftSerie(int count) {
-        return false; //TODO
-    }
+    	/*if(){
+			if (grille.getContentAt(count-1,count) instanceof Pion) {
+				Pion pionRight = (Pion) grille.getContentAt(count-1,count);
+				
+			}
+			return true;
+		}else{
+		    return false;
+		}*/
+	return false;
+    }//TODO
 
     public boolean haveEmptyPlace() {
-        return false; //TODO
-    }
+    	return false;
+    }//TODO
 
     // ======================
     // COORDINATES MANAGEMENT

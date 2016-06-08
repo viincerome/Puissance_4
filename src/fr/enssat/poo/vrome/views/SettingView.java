@@ -10,7 +10,9 @@ import java.awt.event.ActionListener;
 @SuppressWarnings("serial")
 public class SettingView extends JFrame {
 
-    private ApplicationController controller;
+	private static final long serialVersionUID = -2658676059456370329L;
+	
+    private ApplicationController controler;
 
     private JButton start;
     private JButton quitter;
@@ -28,10 +30,10 @@ public class SettingView extends JFrame {
     private JLabel label_joueur = new JLabel("Nombre de joueur");
 
 
-    public SettingView(ApplicationController controller) {
+    public SettingView(ApplicationController controler) {
 
-        super("Convertir");
-        this.controller = controller;
+        super("Puissance 4 - Vincent ROME");
+        this.controler = controler;
         ViewsUtilities.setGeneralParameters(this);
         this.setSize(500, 150);
         this.setLocationRelativeTo(null);
