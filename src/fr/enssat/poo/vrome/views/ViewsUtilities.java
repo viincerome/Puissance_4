@@ -11,7 +11,7 @@ public final class ViewsUtilities {
         window.validate();
         window.pack();
         window.setVisible(true);
-        window.setResizable(false);
+        //window.setResizable(false);
     }
 
 }

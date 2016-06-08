@@ -5,7 +5,7 @@ import java.util.*;
 
 import javax.swing.JPanel;
 
-public class Case extends JPanel implements Observer{
+public class Case extends JPanel{
 	
 	public Case(){
 		setPreferredSize(new Dimension(25,25));

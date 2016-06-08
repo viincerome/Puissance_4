@@ -19,12 +19,14 @@ public class ApplicationController {
     public void launch() {
 
         // Pour le moment, on ne gère que le cas d'une nouvelle partie entre 2 joueurs
-    	//this.modele.afficherPlateau();
+    	this.modele.afficherPlateau();
 
         Pion premierPionJaune = new Pion(PionColor.YELLOW);
         this.modele.addPion(premierPionJaune, 0, 1);
         //this.modele.afficherPlateau();
-        
+        this.modele.addPion(premierPionJaune, 0, 1);
+        //this.modele.afficherPlateau();
+
         Pion premierPionRouge = new Pion(PionColor.RED);
         this.modele.addPion(premierPionRouge, 0, 3);
         this.modele.afficherPlateau();
