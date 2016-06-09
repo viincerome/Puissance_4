@@ -11,11 +11,11 @@ public class Game {
     private Logger LOGGER = new SystemOutLogger(Game.class);
 
     private static final int PIONS_ALIGNMENT_TO_WIN = 4;
-    private final PlateauMaelig plateau;
+    private final Plateau plateau;
     private GameState gameState;
 
     public Game(int rows, int columns) {
-        this.plateau = new PlateauMaelig(rows, columns);
+        this.plateau = new Plateau(rows, columns);
         this.gameState = GameState.PENDING;
     }
 
@@ -29,7 +29,7 @@ public class Game {
       //  }
     }
 
-	public PlateauMaelig getPlateau() {
+	public Plateau getPlateau() {
 		return plateau;
 	}
 

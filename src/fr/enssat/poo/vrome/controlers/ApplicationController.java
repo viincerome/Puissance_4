@@ -3,7 +3,7 @@ package fr.enssat.poo.vrome.controlers;
 import fr.enssat.poo.vrome.utilities.Logger;
 import fr.enssat.poo.vrome.utilities.SystemOutLogger;
 import fr.enssat.poo.vrome.models.Game;
-import fr.enssat.poo.vrome.models.PlateauMaelig;
+import fr.enssat.poo.vrome.models.Plateau;
 import fr.enssat.poo.vrome.models.entities.Pion;
 import fr.enssat.poo.vrome.models.entities.PionColor;
 
@@ -19,7 +19,7 @@ public class ApplicationController {
 
     public void launch() {
 
-        // Pour le moment, on ne gère que le cas d'une nouvelle partie entre 2 joueurs
+        // Pour le moment, on ne gï¿½re que le cas d'une nouvelle partie entre 2 joueurs
     	this.modele.getPlateau().afficherPlateau();
 
         Pion premierPionJaune = new Pion(PionColor.YELLOW);
