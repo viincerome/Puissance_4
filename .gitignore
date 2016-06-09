@@ -11,4 +11,7 @@
 .idea/
 bin/*
 target/*
+.metadata/
+.metadata/*
+/.metadata/*
 
