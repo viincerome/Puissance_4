@@ -24,7 +24,8 @@ public class InfoView extends JFrame {
     	super("Puissance 4 - Vincent ROME");
         this.controler = controler;
         ViewsUtilities.setGeneralParameters(this);
-        this.setBounds(150, 150, 150, 100);
+        this.setBounds(50, 50, 150, 150);
+        
         
         JPanel plateau = new JPanel();
         plateau.setLayout(new FlowLayout());
