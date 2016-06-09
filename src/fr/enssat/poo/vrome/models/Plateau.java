@@ -126,9 +126,7 @@ public class Plateau {
 	}
 
 	private void checkCoords(final int x, final int y) {
-		boolean validX = !(x < 0 || x >= this.grille.getRowsCount() - 1);
-		boolean validY = !(y < 0 || y >= this.grille.getColumnsCount() - 1);
-		if (! (validX && validY)) {
+		if (! isValidCoords(x, y)) {
 			throw new CoordsException("Invalid coordinates for x = " + x + " and y = " + y);
 		}
 	}
