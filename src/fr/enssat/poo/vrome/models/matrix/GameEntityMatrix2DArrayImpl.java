@@ -50,7 +50,7 @@ final public class GameEntityMatrix2DArrayImpl implements GameEntityMatrix {
     }
 
     private void checkCoords(final int x, final int y) {
-        if (x > getRowsCount() || x < 0 || y < 0 || y > getColumnsCount()) {
+        if (x >= getRowsCount() || x < 0 || y < 0 || y >= getColumnsCount()) {
             throw new CoordsException("Invalid coordinates for x = " + x + " and y = " + y);
         }
     }

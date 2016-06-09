@@ -2,8 +2,6 @@ package fr.enssat.poo.vrome.models;
 
 import fr.enssat.poo.vrome.models.entities.GameState;
 import fr.enssat.poo.vrome.utilities.Direction;
-import fr.enssat.poo.vrome.utilities.Logger;
-import fr.enssat.poo.vrome.utilities.SystemOutLogger;
 
 /**
  * Main model class to access the game.
@@ -20,10 +18,13 @@ public class Game {
     }
 
     public void updateGameStatus() {
-        for (Direction direction : Direction.values()) {
-            if (this.plateau.haveSerie(direction, PIONS_ALIGNMENT_TO_WIN)) {
-                this.gameState = GameState.FINISH_WIN; // TODO: add a mechanism to get the winner
-            }
+    //    for (Direction direction : Direction.values()) {
+     //       if (this.plateau.haveSerie(direction, PIONS_ALIGNMENT_TO_WIN)) {
+      //          this.gameState = GameState.FINISH_WIN; 
+       //     }
+        //}
+        if (this.plateau.haveSerie(Direction.RIGHT,PIONS_ALIGNMENT_TO_WIN)) {
+            this.gameState = GameState.FINISH_WIN;
         }
 
         if (!plateau.haveEmptyPlace()) {
