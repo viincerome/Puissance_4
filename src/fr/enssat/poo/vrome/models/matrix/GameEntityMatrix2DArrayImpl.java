@@ -20,7 +20,6 @@ final public class GameEntityMatrix2DArrayImpl implements GameEntityMatrix {
     public void display() {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-               // System.out.print(Integer.toString(i) + "-" + Integer.toString(j) + this.data[i][j].getRepresentation() + " ");
                 System.out.print(this.data[i][j].getRepresentation() + " ");
             }
             System.out.print("\n");

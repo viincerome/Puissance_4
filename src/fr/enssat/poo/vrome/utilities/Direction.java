@@ -1,4 +1,4 @@
-package fr.enssat.poo.vrome.models;
+package fr.enssat.poo.vrome.utilities;
 
 public enum Direction {
 	ABOVE,
