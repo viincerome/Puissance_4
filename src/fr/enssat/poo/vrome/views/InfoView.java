@@ -15,36 +15,67 @@ public class InfoView extends JFrame {
 
     private final ApplicationController controler;
     
-    private JLabel label_plateau = new JLabel("Plateau");
-    private JLabel label_info = new JLabel("Info");
+    //4 Label pour nom des joueurs
+    private JLabel joueur_1 = new JLabel("Joueur 1");
+    private JLabel joueur_2 = new JLabel("Joueur 2");
+    private JLabel joueur_3 = new JLabel("Joueur 3");
+    private JLabel joueur_4 = new JLabel("Joueur 4");
     
+    private JLabel nb_coup_joue = new JLabel("Nombre de coups joué");
+    
+    private JButton restart;
     private JButton quitter;
 
     public InfoView(ApplicationController controler) {
     	super("Puissance 4 - Vincent ROME");
         this.controler = controler;
         ViewsUtilities.setGeneralParameters(this);
-        this.setBounds(50, 50, 150, 150);
+        this.setBounds(50, 50, 175, 350);
         
         
-        JPanel plateau = new JPanel();
-        plateau.setLayout(new FlowLayout());
-        plateau.add(label_plateau);
+        JPanel joueur1 = new JPanel();
+        joueur1.setLayout(new FlowLayout());
+        joueur1.add(joueur_1);
         
-        JPanel info = new JPanel();
-        info.setLayout(new FlowLayout());
-        info.add(label_info);
+        JPanel joueur2 = new JPanel();
+        joueur2.setLayout(new FlowLayout());
+        joueur2.add(joueur_2);
         
+        JPanel joueur3 = new JPanel();
+        joueur3.setLayout(new FlowLayout());
+        joueur3.add(joueur_3);
+        
+        JPanel joueur4 = new JPanel();
+        joueur4.setLayout(new FlowLayout());
+        joueur4.add(joueur_4);
+        
+        JPanel nb_joue = new JPanel();
+        nb_joue.setLayout(new FlowLayout());
+        nb_joue.add(nb_coup_joue);
+        
+        this.restart = new JButton("Restart");
         this.quitter = new JButton("Quitter");
         
-        setLayout(new GridLayout(2,2));
-        add(info);
-        add(plateau);
+        setLayout(new GridLayout(7,1));
+        add(joueur1);
+        add(joueur2);
+        add(joueur3);
+        add(joueur4);
+        add(nb_joue);
+        add(restart);
         add(quitter);
         
         this.quitter.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
+            }
+        });
+        
+        this.restart.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	setVisible(false);	//Pour le moment efface juste info trouver un moyen d'effacer plateau
+            	JFrame fenetreSettings = new SettingView(null);
+            	
             }
         });
         
