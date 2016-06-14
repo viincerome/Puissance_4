@@ -83,7 +83,7 @@ public class SettingView extends JFrame {
 				// TODO Auto-generated method stub
 				//int col = Integer.parseInt(liste_label_colonne.getToolTipText()); UN TRUC DU GENRE
 				JFrame fenetrePlateau = new PlateauView(null);
-				JFrame fenetreInfo = new InfoView(null);
+				JFrame fenetreInfo = new InfoView(null,fenetrePlateau);
 				setVisible(false);				
 			}
 		});

@@ -25,10 +25,13 @@ public class InfoView extends JFrame {
     
     private JButton restart;
     private JButton quitter;
+    
+    private JFrame plateauView;
 
-    public InfoView(ApplicationController controler) {
+    public InfoView(ApplicationController controler, JFrame fenetrePlateau) {
     	super("Puissance 4 - Vincent ROME");
         this.controler = controler;
+        this.plateauView = fenetrePlateau;
         ViewsUtilities.setGeneralParameters(this);
         this.setBounds(50, 50, 175, 350);
         
@@ -75,6 +78,7 @@ public class InfoView extends JFrame {
             public void actionPerformed(ActionEvent e) {
             	setVisible(false);	//Pour le moment efface juste info trouver un moyen d'effacer plateau
             	JFrame fenetreSettings = new SettingView(null);
+            	plateauView.dispose();
             	
             }
         });

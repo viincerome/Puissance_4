@@ -26,6 +26,23 @@ public class PlateauView extends JFrame {
        // this.setBounds(300, 150, 900, 500);
         this.setLocationRelativeTo(null);
         
+        JPanel buttons = new JPanel();
+        buttons.setPreferredSize(new Dimension(420,60)); //x --> vers la droite et y --> vers le bas !!!
+        buttons.setLayout(new GridLayout(1,7));
+        for (int i = 0; i < 7; i++) {
+			//clavier.add(new ButtonView());
+        	/*
+        	 ActionListener actionListener = new ActionListener()
+ {
+      public void actionPerformed(ActionEvent actionEvent) {
+
+          System.out.println(actionEvent.getActionCommand());
+      }
+    };
+        	 */
+        	buttons.add((new JButton(""+ i)));
+		}        
+        
         JPanel plateau = new JPanel();
         plateau.setLayout(new GridLayout(6,7));
 		//plateau.setSize(750, 500);
@@ -34,32 +51,12 @@ public class PlateauView extends JFrame {
 				plateau.add(new Case());
 			}
 		}
-		
-        JPanel clavier = new JPanel();
-        clavier.setPreferredSize(new Dimension(420,60)); //x --> vers la droite et y --> vers le bas !!!
+        
         //Revoir la proportion
         setLayout(new BorderLayout());
-        add(clavier, BorderLayout.NORTH);
+        add(buttons, BorderLayout.NORTH);
         add(plateau, BorderLayout.CENTER);
-        
-        /*
-        setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.gridx = 0;
-        c.gridy = 0;
-        c.weighty = 0.125;
-        
-        //add(clavier);
-        GridBagConstraints p = new GridBagConstraints();
-        p.gridx = 0;
-        p.gridy = 1;
-        p.weighty = 0.875;
-        clavier.add(clavier, c);
-        plateau.add(plateau, p);*/
-        //add(plateau);
-        
-              
-      
+         
     }
 
     public ApplicationController getControler() {
