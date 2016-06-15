@@ -42,4 +42,10 @@ public class ApplicationController {
         LOGGER.debug("Starting the app");
         //new SettingView(this);
     }
+    
+    method ajouter Pion(numero colonne) {
+        -> vérification des coordonnées (vérifier que le numéro de colonne est bien valide par rapport à la taille du plateau)
+        
+        this.modele.addPion(0,colonne)
+    }
 }
