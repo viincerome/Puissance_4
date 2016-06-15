@@ -2,16 +2,11 @@ package fr.enssat.poo.vrome.views;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import fr.enssat.poo.vrome.controlers.ApplicationController;
-
 import javax.swing.*;
-import javax.swing.text.Position;
+import fr.enssat.poo.vrome.controlers.ApplicationController;
 
 public class PlateauView extends JFrame {
 
@@ -57,25 +52,32 @@ public class PlateauView extends JFrame {
         add(buttons, BorderLayout.NORTH);
         add(plateau, BorderLayout.CENTER);
 		*/
-                
+           
+        JButton[] buttons = new JButton[7];
         JPanel plateau = new JPanel();
         plateau.setPreferredSize(new Dimension(420,60));
         plateau.setLayout(new GridLayout(7,7));
         int x = 0;
+        
         for (x = 0; x < 7; x++) {
-        	plateau.add((new JButton(""+ x)));
-			
+        	buttons[x] = new JButton("" + x); 
+        	plateau.add(buttons[x]);
+        	buttons[x].addActionListener(new ActionListener(){
+        		public void actionPerformed(ActionEvent e)
+        		{
+        			//ajout de la fonction addPion
+        		}
+        	});
 		}
+        
         for (x = 1; x < 7; x++) {
 			for (int j = 0; j < 7; j++) {
 				plateau.add(new Case());
 			}
 		}
-		
-        //System.out.println(plateau.getComponentCount() + plateau[0]);
-        
+                
         setLayout(new BorderLayout());
-        add(plateau, BorderLayout.CENTER);
+        add(plateau);
         
     }
 
