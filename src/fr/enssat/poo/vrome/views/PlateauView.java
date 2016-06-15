@@ -31,7 +31,10 @@ public class PlateauView extends JFrame {
         	//
         	 ActionListener actionListener = new ActionListener(){
       			public void actionPerformed(ActionEvent actionEvent) {
-          			System.out.println(actionEvent.getActionCommand());
+          			//System.out.println(actionEvent.getActionCommand());
+          			
+          			// Appel du controleur (getter pour le récupérer car là on est dans une classe ActionListener)
+          			getController().addPion(numero colonne du bouton);
       			}
     		};
         	//
