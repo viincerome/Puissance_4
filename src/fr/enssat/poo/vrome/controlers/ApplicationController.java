@@ -28,8 +28,8 @@ public class ApplicationController {
         System.out.println(this.modele.getGameStatus());
         this.modele.getPlateau().addPion(premierPionJaune, 0, 2);
         this.modele.getPlateau().addPion(premierPionJaune, 0, 3);
-        this.modele.getPlateau().addPion(premierPionJaune, 0, 1);
         this.modele.getPlateau().addPion(premierPionJaune, 0, 4);
+        this.modele.getPlateau().addPion(premierPionJaune, 0, 1);
         this.modele.getPlateau().afficherPlateau();      
         System.out.println(this.modele.getGameStatus());
         this.modele.updateGameStatus();

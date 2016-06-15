@@ -21,7 +21,7 @@ public class InfoView extends JFrame {
     private JLabel joueur_3 = new JLabel("Joueur 3");
     private JLabel joueur_4 = new JLabel("Joueur 4");
     
-    private JLabel nb_coup_joue = new JLabel("Nombre de coups joué");
+    private JLabel nb_coup_joue = new JLabel("Nombre de coups joués");
     
     private JButton restart;
     private JButton quitter;
@@ -34,8 +34,7 @@ public class InfoView extends JFrame {
         this.plateauView = fenetrePlateau;
         ViewsUtilities.setGeneralParameters(this);
         this.setBounds(50, 50, 175, 350);
-        
-        
+                
         JPanel joueur1 = new JPanel();
         joueur1.setLayout(new FlowLayout());
         joueur1.add(joueur_1);
@@ -82,8 +81,7 @@ public class InfoView extends JFrame {
             	
             }
         });
-        
-        
+               
     }
 
     public ApplicationController getControler() {
