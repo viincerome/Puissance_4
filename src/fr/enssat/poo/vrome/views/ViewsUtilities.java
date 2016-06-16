@@ -9,9 +9,7 @@ public final class ViewsUtilities {
     public static void setGeneralParameters(final JFrame window) {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.validate();
-        window.pack();
         window.setVisible(true);
-        //window.setResizable(false);
     }
 
 }

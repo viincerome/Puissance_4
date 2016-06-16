@@ -82,7 +82,7 @@ public class SettingView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				//int col = Integer.parseInt(liste_label_colonne.getToolTipText()); UN TRUC DU GENRE
-				JFrame fenetrePlateau = new PlateauView(null);
+				JFrame fenetrePlateau = new PlateauView(getControler()); // TODO: faire plusieurs controlleurs ?
 				JFrame fenetreInfo = new InfoView(null,fenetrePlateau);
 				setVisible(false);				
 			}
@@ -93,8 +93,9 @@ public class SettingView extends JFrame {
                 System.exit(0);
             }
         });
-        
-        
     }
 
+    private ApplicationController getControler() {
+        return this.controler;
+    }
 }

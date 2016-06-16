@@ -7,6 +7,5 @@ public class Puissance4Launcher {
 
     public static void main(final String[] args) {
         new ApplicationController().launch();
-        SettingView fenetre = new SettingView(null);
     }
 }

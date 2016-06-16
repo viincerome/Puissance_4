@@ -45,7 +45,7 @@ public class Plateau {
 	// TODO: not tested yet
 	public void addPion(final Pion pion, final int x, final int y) {
 		if ( x != 0 || !isValidCoords(x, y) ) {
-			throw new CoordsException("On ne peux ajouter un pion que sur la premiÃ¨re ligne !");
+			throw new CoordsException("On ne peux ajouter un pion que sur la premiere ligne !");
 		}
 
 		if ( !(getNeighboringEntity(Direction.BELOW, x, y) instanceof EmptyPlace) ) {
@@ -83,7 +83,7 @@ public class Plateau {
 		return true;
 	}
 
-	private GameEntity getNeighboringEntity(final Direction direction, final int x, final int y) {
+    private GameEntity getNeighboringEntity(final Direction direction, final int x, final int y) {
 		switch ( direction ) {
 			case ABOVE :
 				return this.grille.getContentAt(x - 1, y);
@@ -121,7 +121,7 @@ public class Plateau {
 
 	private boolean isValidCoords(final int x, final int y) {
 		boolean validX = !(x < 0 || x >= this.grille.getRowsCount() - 1);
-		boolean validY = !(y < 0 || y >= this.grille.getColumnsCount() - 1);
+		boolean validY = !(y < 0 || y > this.grille.getColumnsCount() - 1);
 		return validX && validY;
 	}
 
