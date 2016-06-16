@@ -4,5 +4,5 @@ public enum PionColor {
 	YELLOW,
     RED,
     PURPLE,
-    GREEN;
+    GREEN
 }
