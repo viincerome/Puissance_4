@@ -26,22 +26,6 @@ public class Plateau {
 		init();
 	}
 
-	private void init() {
-		final int rowsCount = this.grille.getRowsCount();
-		final int columnsCount = this.grille.getColumnsCount();
-
-		for ( int i = 0; i < rowsCount; i++ ) {
-			for ( int j = 0; j < columnsCount; j++ ) {
-				this.grille.setContentAt(i, j, new EmptyPlace());
-			}
-		}
-		LOGGER.debug("La grille de taille " + rowsCount + "x" + columnsCount + " a bien ete initialisee avec des cases vides");
-	}
-
-	// ================
-	// PIONS MANAGEMENT
-	// ================
-
 	// TODO: not tested yet
 	public void addPion(final Pion pion, final int x, final int y) {
 		if ( x != 0 || !isValidCoords(x, y) ) {
@@ -57,33 +41,15 @@ public class Plateau {
 		this.lastPlayedPion = pion;
 	}
 
-	private void updatePionPosition(final Pion pion, int x, final int y) {
-		while ( isValidCoords(x, y) && getNeighboringEntity(Direction.BELOW, x, y) instanceof EmptyPlace ) {
-			this.grille.setContentAt(x, y, new EmptyPlace());
-			x = x + 1;
-			this.grille.setContentAt(x, y, pion);
-		}
-		pion.setX(x);
-		pion.setY(y);
+	// ================
+	// PIONS MANAGEMENT
+	// ================
+
+	public void afficherPlateau() {
+		this.grille.display();
 	}
 
-	public boolean haveSerie(Direction direction, final int serieSize) { // serieSize = 4
-		GameEntity neighbor = getNeighboringEntity(direction, lastPlayedPion.getX(), lastPlayedPion.getY());
-		for ( int i = 0; i < serieSize; i++ ) {
-			if ( neighbor instanceof EmptyPlace ) { //EmptyPlace = du vide
-				return false;
-			} // Forc�ment un Pion
-			Pion neighborPion = (Pion) neighbor; //Cast car on avait d��clar� une gameemtity
-			if ( neighborPion.getColor() != lastPlayedPion.getColor() ) {
-				return false;
-			}
-			// A ce niveau l�, le pionRight est un pion de la m�me couleur que le dernier jou�
-			neighbor = getNeighboringEntity(direction, neighborPion.getX(), neighborPion.getY());
-		}
-		return true;
-	}
-
-    private GameEntity getNeighboringEntity(final Direction direction, final int x, final int y) {
+	private GameEntity getNeighboringEntity(final Direction direction, final int x, final int y) {
 		switch ( direction ) {
 			case ABOVE :
 				return this.grille.getContentAt(x - 1, y);
@@ -107,12 +73,40 @@ public class Plateau {
 	}
 
 	public boolean haveEmptyPlace() {
-		for (int columnIndex = 0; columnIndex <= this.grille.getColumnsCount(); columnIndex++) {
-			if (this.grille.getContentAt(0, columnIndex) instanceof EmptyPlace) {
+		for ( int columnIndex = 0; columnIndex <= this.grille.getColumnsCount(); columnIndex++ ) {
+			if ( this.grille.getContentAt(0, columnIndex) instanceof EmptyPlace ) {
 				return true;
 			}
 		}
 		return false;
+	}
+
+	public boolean haveSerie(final Direction direction, final int serieSize) { // serieSize = 4
+		GameEntity neighbor = getNeighboringEntity(direction, this.lastPlayedPion.getX(), this.lastPlayedPion.getY());
+		for ( int i = 0; i < serieSize; i++ ) {
+			if ( neighbor instanceof EmptyPlace ) { //EmptyPlace = du vide
+				return false;
+			} // Forc�ment un Pion
+			Pion neighborPion = (Pion) neighbor; //Cast car on avait d��clar� une gameemtity
+			if ( neighborPion.getColor() != this.lastPlayedPion.getColor() ) {
+				return false;
+			}
+			// A ce niveau l�, le pionRight est un pion de la m�me couleur que le dernier jou�
+			neighbor = getNeighboringEntity(direction, neighborPion.getX(), neighborPion.getY());
+		}
+		return true;
+	}
+
+	private void init() {
+		final int rowsCount = this.grille.getRowsCount();
+		final int columnsCount = this.grille.getColumnsCount();
+
+		for ( int i = 0; i < rowsCount; i++ ) {
+			for ( int j = 0; j < columnsCount; j++ ) {
+				this.grille.setContentAt(i, j, new EmptyPlace());
+			}
+		}
+		this.LOGGER.debug("La grille de taille " + rowsCount + "x" + columnsCount + " a bien ete initialisee avec des cases vides");
 	}
 
 	// ======================
@@ -125,17 +119,17 @@ public class Plateau {
 		return validX && validY;
 	}
 
-	private void checkCoords(final int x, final int y) {
-		if (! isValidCoords(x, y)) {
-			throw new CoordsException("Invalid coordinates for x = " + x + " and y = " + y);
-		}
-	}
-
 	// =============================
 	// DEVELOPMENT / DEBUG UTILITIES
 	// =============================
 
-	public void afficherPlateau() {
-		this.grille.display();
+	private void updatePionPosition(final Pion pion, int x, final int y) {
+		while ( isValidCoords(x, y) && getNeighboringEntity(Direction.BELOW, x, y) instanceof EmptyPlace ) {
+			this.grille.setContentAt(x, y, new EmptyPlace());
+			x++; // Parameter should not be assigned
+			this.grille.setContentAt(x, y, pion);
+		}
+		pion.setX(x);
+		pion.setY(y);
 	}
 }
