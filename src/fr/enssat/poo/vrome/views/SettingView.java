@@ -45,6 +45,7 @@ public class SettingView extends JFrame {
             @Override
             public void actionPerformed(final ActionEvent e) {
                 getControler().startGame(getCurrentFrame().getWantedRows(), getCurrentFrame().getWantedColumns());
+               	getCurrentFrame().setVisible(false);
                 getCurrentFrame().dispose();
             }
         });
