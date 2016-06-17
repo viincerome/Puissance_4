@@ -5,12 +5,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSpinner;
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import fr.enssat.poo.vrome.controlers.ApplicationController;
 
@@ -20,14 +17,14 @@ public class SettingView extends JFrame {
 
 	private ApplicationController controler;
 
-	private JButton start;
-	private JButton quitter;
+    private int wantedColumns;
+    private int wantedRows;
 
-	private JLabel label_ligne = new JLabel("Nombre de ligne");
-	private JSpinner liste_label_ligne = new JSpinner();
+    private JLabel label_ligne = new JLabel("Nombre de ligne : ");
+	private JSpinner spinnerRows = new JSpinner();
 
 	private JLabel label_colonne = new JLabel("Nombre de colonne : ");
-	private JSpinner liste_label_colonne = new JSpinner();
+	private JSpinner spinnerColumns = new JSpinner();
 
 	private String[] joueur = { "2", "3", "4" };
 	private JComboBox<String> liste_label_joueur = new JComboBox<>(this.joueur);
@@ -37,22 +34,38 @@ public class SettingView extends JFrame {
 
 		super("Puissance 4 - Vincent ROME");
 		this.controler = controler;
-		ViewsUtilities.setGeneralParameters(this);
+        this.wantedRows = controler.getDefaultRowsCount();
+        this.wantedColumns = controler.getDefaultColumnsCount();
+
 		this.setSize(500, 150);
 		setLocationRelativeTo(null);
 
-		this.start = new JButton("Commencer la Partie");
-		this.quitter = new JButton("Quitter");
+		 JButton start = new JButton("Commencer la Partie");
+        start.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                getControler().startGame(getCurrentFrame().getWantedRows(), getCurrentFrame().getWantedColumns());
+                getCurrentFrame().dispose();
+            }
+        });
+
+        JButton quitter = new JButton("Quitter");
+        quitter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                System.exit(0);
+            }
+        });
 
 		JPanel ligne = new JPanel();
 		ligne.setLayout(new FlowLayout());
 		ligne.add(this.label_ligne);
-		ligne.add(this.liste_label_ligne);
+		ligne.add(this.spinnerRows);
 
 		JPanel colonne = new JPanel();
 		colonne.setLayout(new FlowLayout());
 		colonne.add(this.label_colonne);
-		colonne.add(this.liste_label_colonne);
+		colonne.add(this.spinnerColumns);
 
 		JPanel participant = new JPanel();
 		participant.setLayout(new FlowLayout());
@@ -63,31 +76,49 @@ public class SettingView extends JFrame {
 		this.add(ligne);
 		this.add(colonne);
 		this.add(participant);
-		this.add(this.start);
-		this.add(this.quitter);
+		this.add(start);
+		this.add(quitter);
 
 		// Set default values
-		this.liste_label_ligne.setValue(6);
-		this.liste_label_colonne.setValue(7);
+		this.spinnerRows.setValue(wantedRows);
+        this.spinnerRows.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                getCurrentFrame().wantedRows = (int) getCurrentFrame().spinnerRows.getValue();
+            }
+        });
 
-		this.start.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(final ActionEvent e) {
-				// TODO Auto-generated method stub
-				//int col = Integer.parseInt(liste_label_colonne.getToolTipText()); UN TRUC DU GENRE
-				JFrame fenetrePlateau = new PlateauView(getControler()); // TODO: faire plusieurs controlleurs ?
-				new InfoView(getControler(), fenetrePlateau);
-				setVisible(false);
-			}
-		});
+		this.spinnerColumns.setValue(wantedColumns);
+        this.spinnerColumns.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                getCurrentFrame().wantedColumns = (int) getCurrentFrame().spinnerColumns.getValue();
+            }
+        });
 
-		this.quitter.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(final ActionEvent e) {
-				System.exit(0);
-			}
-		});
-	}
+        ViewsUtilities.setGeneralParameters(this);
+    }
+
+    private int getWantedRows() {
+        return wantedRows;
+    }
+
+    private void setWantedRows(int wantedRows) {
+        this.wantedRows = wantedRows;
+    }
+
+
+    private int getWantedColumns() {
+        return wantedColumns;
+    }
+
+    private void setWantedColumns(int wantedColumns) {
+        this.wantedColumns = wantedColumns;
+    }
+
+    private SettingView getCurrentFrame() {
+        return this;
+    }
 
 	private ApplicationController getControler() {
 		return this.controler;
