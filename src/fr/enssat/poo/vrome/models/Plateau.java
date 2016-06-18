@@ -32,7 +32,7 @@ public class Plateau {
 			throw new CoordsException("On ne peux ajouter un pion que sur la premiere ligne !");
 		}
 
-		if ( !(getNeighboringEntity(Direction.BELOW, x, y) instanceof EmptyPlace) ) {
+		if ( !(getNeighboringEntity(Direction.BELOW, x-1, y) instanceof EmptyPlace) ) { //Si tu laisse x tu ne peux mettre que 5 pions par colonne et non 6
 			throw new RuntimeException("On ne peux placer un pion que sur une colonne ayant au moins une place"); // TODO: Create a more explicit exception
 		}
 

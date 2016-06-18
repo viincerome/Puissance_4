@@ -35,7 +35,7 @@ public class PlateauView extends JFrame {
 		plateau.setPreferredSize(new Dimension(420, 60)); //TODO: dépend du nombre de lignes et colonnes
 		plateau.setLayout(new GridLayout(this.controler.getRows(), this.controler.getColumns()));
 
-		for ( int counter = 0; counter < this.controler.getRows(); counter++ ) {
+		for ( int counter = 0; counter <= this.controler.getColumns(); counter++ ) {
             LOGGER.debug("Creating button " + counter);
 			final int column = counter; // Javadoc: any local variable, used but not declared in an inner class must be definitely assigned before the body of the inner class.
 
@@ -51,7 +51,7 @@ public class PlateauView extends JFrame {
 			plateau.add(buttons[column]);
 		}
 
-		drawPlateau(plateau);
+		this.drawPlateau(plateau);
 		this.add(plateau);
 
 		ViewsUtilities.setGeneralParameters(this);
@@ -59,7 +59,7 @@ public class PlateauView extends JFrame {
 
 	private void drawPlateau(final JPanel plateau) {
 		for ( int x = 0; x < this.controler.getRows(); x++ ) {
-			for ( int j = 0; j < this.controler.getColumns(); j++ ) {
+			for ( int y = 0; y < this.controler.getColumns(); y++ ) {
 				plateau.add(new Case());
 			}
 		}

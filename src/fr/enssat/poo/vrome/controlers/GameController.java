@@ -49,7 +49,7 @@ public class GameController {
     }
 
     public void launch(int rows, int columns) {
-        this.modele = new Game(rows, columns);
+        this.modele = new Game(columns, rows);
         this.rows = rows;
         this.columns = columns;
         new PlateauView(this);
