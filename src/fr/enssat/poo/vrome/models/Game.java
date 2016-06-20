@@ -22,15 +22,16 @@ public class Game {
 	}
 
 	public Plateau getPlateau() {
+        updateGameStatus();
 		return this.plateau;
 	}
 
 	public void updateGameStatus() {
-		//    for (Direction direction : Direction.values()) {
-		//       if (this.plateau.haveSerie(direction, PIONS_ALIGNMENT_TO_WIN)) {
-		//          this.gameState = GameState.FINISH_WIN;
-		//     }
-		//}
+		  //  for (Direction direction : Direction.values()) {
+		   //    if (this.plateau.haveSerie(direction, PIONS_ALIGNMENT_TO_WIN)) {
+		    //      this.gameState = GameState.FINISH_WIN;
+		    // }
+	//	}
 		if ( this.plateau.haveSerie(Direction.RIGHT, PIONS_ALIGNMENT_TO_WIN) ) {
 			this.gameState = GameState.FINISH_WIN;
 		}

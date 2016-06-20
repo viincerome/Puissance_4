@@ -81,15 +81,22 @@ public class Plateau {
 		return false;
 	}
 
+    // FIXME ne fonctionne pas
 	public boolean haveSerie(final Direction direction, final int serieSize) { // serieSize = 4
+        if (lastPlayedPion == null) {
+            System.out.println("Return false CASE 0");
+            return false;
+        }
 		GameEntity neighbor = getNeighboringEntity(direction, this.lastPlayedPion.getX(), this.lastPlayedPion.getY());
 		for ( int i = 0; i < serieSize; i++ ) {
 			if ( neighbor instanceof EmptyPlace ) { //EmptyPlace = du vide
+                System.out.println("Return false CASE 1");
 				return false;
 			} // Forc�ment un Pion
 			Pion neighborPion = (Pion) neighbor; //Cast car on avait d��clar� une gameemtity
 			if ( neighborPion.getColor() != this.lastPlayedPion.getColor() ) {
-				return false;
+                System.out.println("Return false CASE 2");
+                return false;
 			}
 			// A ce niveau l�, le pionRight est un pion de la m�me couleur que le dernier jou�
 			neighbor = getNeighboringEntity(direction, neighborPion.getX(), neighborPion.getY());
