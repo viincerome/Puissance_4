@@ -8,9 +8,6 @@ import fr.enssat.poo.vrome.utilities.Logger;
 import fr.enssat.poo.vrome.utilities.SystemOutLogger;
 import fr.enssat.poo.vrome.views.PlateauView;
 
-/**
- * Created by mnantel on 17/06/16.
- */
 public class GameController {
 
     private Logger LOGGER = new SystemOutLogger(GameController.class);
@@ -49,7 +46,7 @@ public class GameController {
     }
 
     public void launch(int rows, int columns) {
-        this.modele = new Game(columns, rows);
+        this.modele = new Game(rows, columns);
         this.rows = rows;
         this.columns = columns;
         new PlateauView(this);

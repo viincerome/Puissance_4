@@ -14,7 +14,7 @@ public class ApplicationController {
 	}
 
     public void startGame(int rows, int columns){
-        new GameController().launch(columns,rows);
+        new GameController().launch(rows, columns);
     }
 
     public int getDefaultRowsCount(){
