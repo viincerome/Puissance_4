@@ -10,12 +10,14 @@ import fr.enssat.poo.vrome.utilities.Direction;
 import fr.enssat.poo.vrome.utilities.Logger;
 import fr.enssat.poo.vrome.utilities.SystemOutLogger;
 
-public class Plateau {
+import java.util.Observable;
+
+public class Plateau extends Observable {
 
     private Logger LOGGER = new SystemOutLogger(Plateau.class);
 
     private GameEntityMatrix grille;
-    private Pion lastPlayedPion; // Dernier pion plac� sur le plateau
+    private Pion lastPlayedPion;
 
     // ==============
     // INITIALISATION
@@ -26,13 +28,12 @@ public class Plateau {
         init();
     }
 
-    // TODO: not tested yet
     public void addPion(final Pion pion, final int x, final int y) {
         if (x != 0 || !isValidCoords(x, y)) {
             throw new CoordsException("On ne peux ajouter un pion que sur la premiere ligne !");
         }
 
-        if (!(getNeighboringEntity(Direction.BELOW, x - 1, y) instanceof EmptyPlace)) { //Si tu laisse x tu ne peux mettre que 5 pions par colonne et non 6
+        if (!(getNeighboringEntity(Direction.BELOW, x - 1, y) instanceof EmptyPlace)) {
             throw new RuntimeException("On ne peux placer un pion que sur une colonne ayant au moins une place"); // TODO: Create a more explicit exception
         }
 
@@ -81,24 +82,19 @@ public class Plateau {
         return false;
     }
 
-    // FIXME ne fonctionne pas
-    public boolean haveSerie(final Direction direction, final int serieSize) { // serieSize = 4
+    public boolean haveSerie(final Direction direction, final int serieSize) {
         if (lastPlayedPion == null) {
-            System.out.println("Return false CASE 0");
             return false;
         }
         GameEntity neighbor = getNeighboringEntity(direction, this.lastPlayedPion.getX(), this.lastPlayedPion.getY());
         for (int i = 0; i < serieSize; i++) {
-            if (neighbor instanceof EmptyPlace) { //EmptyPlace = du vide
-                System.out.println("Return false CASE 1");
-                return false;
-            } // Forc�ment un Pion
-            Pion neighborPion = (Pion) neighbor; //Cast car on avait d��clar� une gameemtity
-            if (neighborPion.getColor() != this.lastPlayedPion.getColor()) {
-                System.out.println("Return false CASE 2");
+            if (neighbor instanceof EmptyPlace) {
                 return false;
             }
-            // A ce niveau l�, le pionRight est un pion de la m�me couleur que le dernier jou�
+            Pion neighborPion = (Pion) neighbor;
+            if (neighborPion.getColor() != this.lastPlayedPion.getColor()) {
+                return false;
+            }
             neighbor = getNeighboringEntity(direction, neighborPion.getX(), neighborPion.getY());
         }
         return true;
@@ -116,6 +112,10 @@ public class Plateau {
         this.LOGGER.debug("La grille de taille " + rowsCount + "x" + columnsCount + " a bien ete initialisee avec des cases vides");
     }
 
+    public GameEntity getContentAt(int x, int y) {
+        return this.grille.getContentAt(x, y);
+    }
+
     // ======================
     // COORDINATES MANAGEMENT
     // ======================
@@ -127,12 +127,24 @@ public class Plateau {
     }
 
     private void updatePionPosition(final Pion pion, int x, final int y) {
+        this.afficherPlateau();
         while (isValidCoords(x, y) && getNeighboringEntity(Direction.BELOW, x, y) instanceof EmptyPlace) {
             this.grille.setContentAt(x, y, new EmptyPlace());
-            x++; // Parameter should not be assigned
+            x++; // FIXME: Parameter should not be assigned
             this.grille.setContentAt(x, y, pion);
+            informView();
         }
         pion.setX(x);
         pion.setY(y);
+    }
+
+    private void informView() {
+        setChanged();
+        notifyObservers();
+        try {
+            Thread.sleep(100); // TODO: Move this in the controler or in the view
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

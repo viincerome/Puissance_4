@@ -6,9 +6,10 @@ import fr.enssat.poo.vrome.models.entities.GameState;
 import fr.enssat.poo.vrome.models.entities.Pion;
 import fr.enssat.poo.vrome.utilities.Logger;
 import fr.enssat.poo.vrome.utilities.SystemOutLogger;
-import fr.enssat.poo.vrome.views.PlateauView;
+import fr.enssat.poo.vrome.views.GameView;
 
 import java.util.List;
+import java.util.Observer;
 
 public class GameController {
 
@@ -19,25 +20,40 @@ public class GameController {
     private List<Player> players;
     private Player currentPlayer;
     private int currentPlayerId;
+    private String winnerName = null;
 
     private int rows;
     private int columns;
 
-    public boolean playPion(final int columnIndex) {
+    public void playPion(final int columnIndex) {
         checkGameStatus();
         try {
             this.modele.getPlateau().addPion(new Pion(this.currentPlayer.getPionColor()), 0, columnIndex);
+            checkGameStatus(); // Don't update the player if the game is finished, in order to get the winner !
             updateCurrentPlayer();
             this.modele.getPlateau().afficherPlateau();
-            return true;
-        } catch (Exception e) { // TODO catch more precise exception
-            e.printStackTrace();
-            return false;
+        } catch (GameFinishedException e) { // TODO catch more precise exception
+            this.winnerName = this.getCurrentPlayerName();
         }
     }
 
+    public boolean isFinishWin() {
+        return this.modele.getGameStatus() == GameState.FINISH_WIN;
+    }
+
+    public boolean isFinishEquality() {
+        return this.modele.getGameStatus() == GameState.FINISH_EQUALITY;
+    }
+
+    /**
+     * @return the name of the player that won the game or null if there is no winner.
+     */
+    public String getWinnerName() {
+        return winnerName;
+    }
+
     private void checkGameStatus() {
-        System.out.println("game status -> " + this.modele.getGameStatus());
+        LOGGER.debug("The game status is : " + this.modele.getGameStatus());
         if (this.modele.getGameStatus() != GameState.PENDING) {
             throw new GameFinishedException();
         }
@@ -58,7 +74,7 @@ public class GameController {
         this.players = players;
         this.currentPlayerId = 0;
         this.currentPlayer = players.get(currentPlayerId);
-        new PlateauView(this);
+        new GameView(this);
     }
 
     public void updateCurrentPlayer() {
@@ -73,6 +89,14 @@ public class GameController {
 
     public String getCurrentPlayerName() {
         return this.currentPlayer.getName();
+    }
+
+    public char getContentAt(int x, int y) {
+        return this.modele.getPlateau().getContentAt(x, y).getRepresentation();
+    }
+
+    public void registerObserver(Observer observer) {
+        this.modele.getPlateau().addObserver(observer);
     }
 
 }

@@ -9,7 +9,10 @@ public class Case extends JPanel {
     private static final int CERCLE_RAYON = 20;
     private static final long serialVersionUID = -8619336301008377067L;
 
-    public Case() {
+    private Color color;
+
+    public Case(Color color) {
+        this.color = color;
         Double size = 2.5 * CASE_SIZE;
         setPreferredSize(new Dimension(size.intValue(), size.intValue()));
         setBackground(Color.blue);
@@ -22,7 +25,7 @@ public class Case extends JPanel {
     @Override
     public void paintComponent(final Graphics graphics) {
         super.paintComponent(graphics);
-        graphics.setColor(Color.white);
+        graphics.setColor(this.color);
         drawCircle(graphics, CASE_SIZE, CASE_SIZE, CERCLE_RAYON);
     }
 
