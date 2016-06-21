@@ -1,24 +1,24 @@
 package fr.enssat.poo.vrome.controlers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import fr.enssat.poo.vrome.models.Player;
 import fr.enssat.poo.vrome.models.entities.PionColor;
 import fr.enssat.poo.vrome.utilities.Logger;
 import fr.enssat.poo.vrome.utilities.SystemOutLogger;
 import fr.enssat.poo.vrome.views.SettingView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ApplicationController {
 
     private Logger LOGGER = new SystemOutLogger(ApplicationController.class);
 
-	public void launch() {
-		this.LOGGER.debug("Starting the app");
-		new SettingView(this);
-	}
+    public void launch() {
+        this.LOGGER.debug("Starting the app");
+        new SettingView(this);
+    }
 
-    public void startGame(int rows, int columns){
+    public void startGame(int rows, int columns) {
         List<Player> players = new ArrayList<>();
         // TODO: Construire les objets joueurs à partir d'informations récupérées de la vue (pseudo, couleur de jetons...)
 
@@ -29,11 +29,11 @@ public class ApplicationController {
         new GameController().launch(rows, columns, players);
     }
 
-    public int getDefaultRowsCount(){
+    public int getDefaultRowsCount() {
         return 6;
     }
 
-    public int getDefaultColumnsCount(){
+    public int getDefaultColumnsCount() {
         return 7;
     }
 

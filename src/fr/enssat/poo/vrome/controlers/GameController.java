@@ -4,7 +4,6 @@ import fr.enssat.poo.vrome.models.Game;
 import fr.enssat.poo.vrome.models.Player;
 import fr.enssat.poo.vrome.models.entities.GameState;
 import fr.enssat.poo.vrome.models.entities.Pion;
-import fr.enssat.poo.vrome.models.entities.PionColor;
 import fr.enssat.poo.vrome.utilities.Logger;
 import fr.enssat.poo.vrome.utilities.SystemOutLogger;
 import fr.enssat.poo.vrome.views.PlateauView;
@@ -31,7 +30,7 @@ public class GameController {
             updateCurrentPlayer();
             this.modele.getPlateau().afficherPlateau();
             return true;
-        } catch ( Exception e ) { // TODO catch more precise exception
+        } catch (Exception e) { // TODO catch more precise exception
             e.printStackTrace();
             return false;
         }
@@ -52,14 +51,6 @@ public class GameController {
         return this.rows;
     }
 
-    public void setRows(int rows) {
-        this.rows = rows;
-    }
-
-    public void setColumns(int columns) {
-        this.columns = columns;
-    }
-
     public void launch(int rows, int columns, List<Player> players) {
         this.modele = new Game(rows, columns);
         this.rows = rows;
@@ -78,6 +69,10 @@ public class GameController {
             this.currentPlayerId = 0;
         }
         this.currentPlayer = players.get(currentPlayerId);
+    }
+
+    public String getCurrentPlayerName() {
+        return this.currentPlayer.getName();
     }
 
 }

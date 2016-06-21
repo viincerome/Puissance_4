@@ -1,72 +1,83 @@
 package fr.enssat.poo.vrome.views;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import fr.enssat.poo.vrome.controlers.GameController;
 import fr.enssat.poo.vrome.utilities.Logger;
 import fr.enssat.poo.vrome.utilities.SystemOutLogger;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class PlateauView extends JFrame {
 
-	private static final long serialVersionUID = -2658676059456370329L;
+    private static final long serialVersionUID = -2658676059456370329L;
+    private static final int BUTTONS_HEIGHT = new JButton().getHeight();
+    private final GameController controler;
+    private Logger LOGGER = new SystemOutLogger(PlateauView.class);
 
-	private Logger LOGGER = new SystemOutLogger(PlateauView.class);
+    public PlateauView(final GameController controler) {
+        super("Puissance 4 - Vincent ROME");
+        this.controler = controler;
+        setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
 
-	private final GameController controler;
+        getContentPane().add(createInfoPanel(), BorderLayout.PAGE_START);
+        getContentPane().add(createPlateauPanel(), BorderLayout.CENTER);
 
-	public PlateauView(final GameController controler) {
+        ViewsUtilities.setGeneralParameters(this);
+    }
 
-		super("Puissance 4 - Vincent ROME");
-		this.controler = controler;
-		this.setSize(420, 420); //TODO dépend du nombre de lignes et colonnes
-		setLocationRelativeTo(null);
-		setLayout(new BorderLayout());
+    private JPanel createPlateauPanel() {
+        JPanel plateauPanel = new JPanel();
+        plateauPanel.setLayout(new BorderLayout());
 
-		JButton[] buttons = new JButton[this.controler.getRows()];
-		JPanel plateau = new JPanel();
-		plateau.setPreferredSize(new Dimension()); //TO DO: dépend du nombre de lignes et colonnes
-		plateau.setLayout(new GridLayout(this.controler.getRows(), this.controler.getColumns()));
+        JPanel buttonsPanel = new JPanel();
+        JPanel grillePanel = new JPanel();
 
-		for ( int counter = 0; counter < this.controler.getRows(); counter++ ) {
+        grillePanel.setLayout(new GridLayout(this.controler.getRows(), this.controler.getColumns()));
+        LOGGER.debug("On va crÃ©er " + this.controler.getColumns());
+        for (int counter = 1; counter <= this.controler.getColumns(); counter++) {
             LOGGER.debug("Creating button " + counter);
-			final int column = counter; // Javadoc: any local variable, used but not declared in an inner class must be definitely assigned before the body of the inner class.
+            final int column = counter; // Any local variable, used but not declared in an inner class must be definitely assigned before the body of the inner class.
 
-			buttons[column] = new JButton(Integer.toString(column));
-			buttons[column].addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(final ActionEvent e) {
-					PlateauView.this.LOGGER.debug("Demande de placer un pion sur le plateau sur la colonne " + column + " par l'interface graphique.");
-					getControler().playPion(column);
-				}
-			});
+            JButton button = new JButton(Integer.toString(column));
 
-			plateau.add(buttons[column]);
-		}
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(final ActionEvent e) {
+                    LOGGER.debug("Demande de placer un pion sur le plateau sur la colonne " + column + " par l'interface graphique.");
+                    getControler().playPion(column);
+                }
+            });
 
-		drawPlateau(plateau);
-		this.add(plateau);
+            buttonsPanel.add(button);
+        }
 
-		ViewsUtilities.setGeneralParameters(this);
-	}
+        drawPlateau(grillePanel);
 
-	private void drawPlateau(final JPanel plateau) {
-		for ( int x = 0; x < this.controler.getRows(); x++ ) {
-			for ( int j = 0; j < this.controler.getColumns(); j++ ) {
-				plateau.add(new Case());
-			}
-		}
-	}
+        plateauPanel.add(buttonsPanel, BorderLayout.PAGE_START);
+        plateauPanel.add(grillePanel, BorderLayout.CENTER);
+        return plateauPanel;
+    }
 
-	private GameController getControler() {
-		assert this.controler != null;
-		return this.controler;
-	}
+    private JPanel createInfoPanel() {
+        JPanel panel = new JPanel();
+        panel.add(new JLabel("C'est au tour de " + getControler().getCurrentPlayerName() + " de jouer..."));
+        return panel;
+    }
+
+    private void drawPlateau(final JPanel plateau) {
+        for (int x = 0; x < this.controler.getRows(); x++) {
+            for (int j = 0; j < this.controler.getColumns(); j++) {
+                plateau.add(new Case());
+            }
+        }
+    }
+
+    private GameController getControler() {
+        assert this.controler != null;
+        return this.controler;
+    }
+    
 }
